@@ -7,22 +7,24 @@ import { Howl } from 'howler';
   templateUrl: 'test.html'
 })
 export class TestPage {
-  sound: Howl = null
+  choir: Howl[] = []
 
   constructor(public navCtrl: NavController) {
-    console.log(this.sound)
   }
 
-  play(){
-    console.log("playing")
-    this.sound = new Howl({
-      src: ['mp3/system7.mp3']
+  play(num: number){
+    console.log("playing " + num)
+    const part = new Howl({
+      src: ['mp3/oiwake'+ num +'.mp3']
     });
-    this.sound.play()
+    part.play()
+    this.choir.push(part)
   }
 
   stop(){
     console.log("stop")
-    this.sound.stop()
+    this.choir.forEach(part => {
+      part.stop()
+    });
   }
 }

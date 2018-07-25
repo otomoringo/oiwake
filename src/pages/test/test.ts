@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { Part } from '../../model/part'
+import { Record } from '../../model/record'
 
 @Component({
   selector: 'page-test',
@@ -9,8 +10,10 @@ import { Part } from '../../model/part'
 })
 export class TestPage {
   choir: Part[] = []
+  recorder: Record
 
   constructor(public navCtrl: NavController) {
+    this.recorder = new Record()
   }
 
   start(filename: String){
@@ -18,6 +21,7 @@ export class TestPage {
     const part = new Part('Part' + filename, 'mp3/' + filename);
     part.start()
     this.choir.push(part)
+    this.recorder.describe(filename)
   }
 
   play(index: number){
@@ -43,4 +47,10 @@ export class TestPage {
     });
     this.choir = []
   }
+
+  save(){
+    this.recorder.save()
+  }
+
+
 }

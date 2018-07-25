@@ -18,6 +18,9 @@
   <ion-label>
     <button ion-button colors (click)="stopAll()">全て停止</button>
   </ion-label>
+  <ion-label>
+      <button ion-button colors (click)="save()">保存</button>
+  </ion-label>
   <ion-list>
     <p *ngFor="let part of choir; index as i">
       <span>{{i}}</span>

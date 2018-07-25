@@ -1,3 +1,5 @@
+import { Part } from './part'
+
 export class Record {
     createDate: number
     timmingList: Array<Timming> = []
@@ -12,7 +14,6 @@ export class Record {
 
     save(){
         this.createDate = (new Date).getTime()
-        console.log(this)
         let min = this.timmingList[0].startTime
         this.timmingList.forEach(timming => {
             timming.startTime -= min
@@ -20,6 +21,22 @@ export class Record {
         sessionStorage.setItem('timmingList', JSON.stringify(this))
     }
 
+    replay(){
+        let replayList: Record = JSON.parse(sessionStorage.getItem('timmingList'))
+        console.log(replayList)
+        replayList.timmingList.forEach(timming => {
+            console.log(timming.startTime)
+            console.log(timming.filename)
+            // setTimeout('this.autoPlay("' + timming.filename + '")', timming.startTime)
+        })
+    }
+
+    // autoPlay = (filename) => {
+    //     console.log('autoPlay')
+    //     const part = new Part(filename, 'mp3/' + filename)
+    //     part.start()
+    // }
+    
 }
 
 export class Timming {

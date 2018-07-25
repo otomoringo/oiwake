@@ -52,5 +52,8 @@ export class TestPage {
     this.recorder.save()
   }
 
+  replay(){
+    this.recorder.replay()
+  }
 
 }

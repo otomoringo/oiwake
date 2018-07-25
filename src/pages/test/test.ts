@@ -1,30 +1,46 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Howl } from 'howler';
+
+import { Part } from '../../model/part'
 
 @Component({
   selector: 'page-test',
   templateUrl: 'test.html'
 })
 export class TestPage {
-  choir: Howl[] = []
+  choir: Part[] = []
 
   constructor(public navCtrl: NavController) {
   }
 
-  play(num: number){
-    console.log("playing " + num)
-    const part = new Howl({
-      src: ['mp3/oiwake'+ num +'.mp3']
-    });
-    part.play()
+  start(filename: String){
+    console.log('playing ' + filename)
+    const part = new Part('Part' + filename, 'mp3/' + filename);
+    part.start()
     this.choir.push(part)
   }
 
-  stop(){
-    console.log("stop")
+  play(index: number){
+    console.log('play' + index)
+    this.choir[index].play()
+  }
+
+  pause(index: number){
+    console.log('pause' + index)
+    this.choir[index].pause()
+  }
+
+  stop(index: number){
+    console.log('stop' + index)
+    this.choir[index].section.stop()
+    this.choir.splice(index, index+1)
+  }
+
+  stopAll(){
+    console.log('stopAll')
     this.choir.forEach(part => {
-      part.stop()
+      part.section.stop()
     });
+    this.choir = []
   }
 }

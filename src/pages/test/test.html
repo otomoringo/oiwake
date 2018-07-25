@@ -1,21 +1,30 @@
 <ion-header>
-    <ion-navbar>
-      <ion-title>Test</ion-title>
-    </ion-navbar>
-  </ion-header>
-  
-  <ion-content padding>
-    <h2>Test</h2>
-    <ion-label>
-      <button ion-button colors (click)="play(1)">1番</button>
-    </ion-label>
-    <ion-label>
-      <button ion-button colors (click)="play(2)">2番</button>
-    </ion-label>
-    <ion-label>
-      <button ion-button colors (click)="play(3)">3番</button>
-    </ion-label>
-    <ion-label>
-      <button ion-button colors (click)="stop()">停止</button>
-    </ion-label>
-  </ion-content>
+  <ion-navbar>
+    <ion-title>Test</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Test</h2>
+  <ion-label>
+    <button ion-button colors (click)="start('oiwake1.mp3')">1番</button>
+  </ion-label>
+  <ion-label>
+    <button ion-button colors (click)="start('oiwake2.mp3')">2番</button>
+  </ion-label>
+  <ion-label>
+    <button ion-button colors (click)="start('oiwake3.mp3')">3番</button>
+  </ion-label>
+  <ion-label>
+    <button ion-button colors (click)="stopAll()">全て停止</button>
+  </ion-label>
+  <ion-list>
+    <p *ngFor="let part of choir; index as i">
+      <span>{{i}}</span>
+      <span>{{part.name}}</span>
+      <button ion-button colors (click)="play(i)">再生</button>
+      <button ion-button colors (click)="pause(i)">一時停止</button>
+      <button ion-button colors (click)="stop(i)">停止</button>
+    </p>
+  </ion-list>
+</ion-content>
